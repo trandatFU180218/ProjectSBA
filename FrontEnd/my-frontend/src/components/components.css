@@ -1,0 +1,100 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+}
+
+/* Banner chiếm 1 phần */
+.header img {
+  flex: 1;
+  max-height: 60px;
+  object-fit: contain;
+}
+
+/* Search chiếm 2 phần */
+.header form {
+  flex: 2;
+  display: flex;
+}
+
+.search {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+
+/* Button search màu cam */
+.icon-search {
+  background-color: orange;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.icon-search:hover {
+  background-color: #ff8c00;
+}
+
+/* Login chiếm 1 phần */
+.login {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.login img {
+  width: 35px;
+  height: 35px;
+  border-radius: 25px;
+}
+
+/* Card chiếm 1 phần */
+.Borrow {
+  flex: 1;
+  text-align: center;
+}
+
+.navbar {
+    background: #f26522;
+    color: white;
+    padding: 10px;
+    display: flex;
+    gap: 20px;
+}
+
+.category-sidebar {
+    width: 250px;
+    background: #f5f5f5;
+    padding: 10px;
+}
+
+.category-item {
+    color: black;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.banner img {
+    width: 800px;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.book-card img {
+    align-items: center;
+    width: 80%;
+    /* height:"200px"; */
+    object-fit: cover;
+}

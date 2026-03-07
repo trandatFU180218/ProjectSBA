@@ -1,5 +1,6 @@
 package com.example.backend.Controller;
 
+import com.example.backend.DTO.BookDTO;
 import com.example.backend.Entity.Book;
 import com.example.backend.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class BookController {
     private BookService service;
 
     @GetMapping
-    public List<Book> getAll(){
+    public List<BookDTO> getAll(){
         return service.getAll();
     }
 

@@ -1,5 +1,6 @@
 package com.example.backend.Service;
 
+import com.example.backend.DTO.BookDTO;
 import com.example.backend.Entity.Book;
 import com.example.backend.Entity.Category;
 import com.example.backend.Repository.BookRepository;
@@ -18,8 +19,19 @@ public class BookService {
     @Autowired
     private CategoryRepository caterepo;
 
-    public List<Book> getAll(){
-        return repo.findAll();
+    public List<BookDTO> getAll() {
+
+        List<Book> books = repo.findAll();
+
+        return books.stream().map(book -> {
+            BookDTO dto = new BookDTO();
+            dto.setId(book.getId());
+            dto.setTitle(book.getTitle());
+            dto.setAuthor(book.getAuthor());
+            dto.setImageUrl(book.getImageUrl());
+            dto.setCategoryName(book.getCategory().getName());
+            return dto;
+        }).toList();
     }
 
     public List<Book> getByCategoryName(String name){
