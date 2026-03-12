@@ -34,6 +34,6 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    private Long roll_id;
+    private Long role_id;
 
 }

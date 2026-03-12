@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import CategorySidebar from "../components/CategorySidebar";
 import Banner from "../components/Banner";
 import BookSection from "../components/BookSection";
+import Footer from "../components/Footer";
 
 function Home() {
 
@@ -32,13 +33,15 @@ function Home() {
 
       <Navbar />
 
-      <div style={{ display: "flex" }}>
-        <CategorySidebar categories={categories} />
+      <div style={{ display: "flex", gap:"10px" }}>
+        <CategorySidebar categories={categories}/>
         <Banner />
+        <div ></div>
       </div>
 
       <BookSection books={books} />
 
+      <Footer/>
     </div>
   );
 }

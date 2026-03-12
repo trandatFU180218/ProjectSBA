@@ -19,7 +19,8 @@ public class BookCopy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private long book_id;
+    @Column(name = "book_id")
+    private long bookId;
 
     private String barcode;
 
