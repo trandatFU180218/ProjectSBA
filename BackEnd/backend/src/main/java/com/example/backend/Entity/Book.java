@@ -3,6 +3,7 @@ package com.example.backend.Entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 import java.util.List;
@@ -34,12 +35,11 @@ public class Book {
     @Column(columnDefinition = "NVARCHAR(MAX)")
     private String description;
 
-    @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
     private Date createdAt;
 
-    //    @Column(name = "category_id")
-//    private Long categoryId;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;

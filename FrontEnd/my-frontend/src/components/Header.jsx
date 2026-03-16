@@ -1,29 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import "./components.css";
 import banner from "../assets/img/BannerTrang2.png";
 import { useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
+import { GoCreditCard } from "react-icons/go";
 
-function Header() {
+
+function Header({onSearch }) {
+
   const navigate = useNavigate();
-  const gotoLogin = () => navigate("/");
+  const [keyword, setKeyword] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    onSearch(keyword);
+  };
+
   return (
     <div className="header">
 
       <img src={banner} alt="bannerProject" className="Bannerpj" />
-      <form>
-        <input className="search" placeholder="Tìm kiếm..." />
-        <button  className="icon-search"><CiSearch/></button>
-        
+
+      <form onSubmit={handleSearch}>
+        <input
+          className="search"
+          placeholder="Tìm kiếm..."
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+        />
+
+        <button className="icon-search">
+          <CiSearch />
+        </button>
       </form>
 
-      <div className="login" onClick={gotoLogin}>
-        <img src="https://cdn2.fptshop.com.vn/small/avatar_trang_1_cd729c335b.jpg" alt="Avatar" className="avatar" />
-        <span> Login/Sign in</span>
+      <div className="Borrow">
+        <GoCreditCard />
+        <span>Borrow</span>
       </div>
 
-      <div className="Borrow">
-        <div>Card</div>
+      <div className="login">
+        <span> Logout</span>
       </div>
 
     </div>

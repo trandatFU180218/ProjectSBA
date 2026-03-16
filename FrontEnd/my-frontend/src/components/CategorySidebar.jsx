@@ -1,14 +1,28 @@
 import React from "react";
 import "./components.css";
 
-function CategorySidebar({ categories }) {
+function CategorySidebar({ categories = [], onFilter }) {
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    onFilter(value === "all" ? null : value);
+  };
+
   return (
     <div className="category-sidebar">
-      {categories.map((c) => (
-        <div key={c.id} className="category-item">
-          {c.name}
-        </div>
-      ))}
+
+      <select className="category-dropdown" onChange={handleChange}>
+
+        <option value="all">All Categories</option>
+
+        {categories.map((c) => (
+          <option key={c.id} value={c.id}>
+            {c.name}
+          </option>
+        ))}
+
+      </select>
+
     </div>
   );
 }

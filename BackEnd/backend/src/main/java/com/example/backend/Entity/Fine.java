@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -17,18 +19,19 @@ public class Fine {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "borrow_id", nullable = false)
-    private Long borrowId;
+    @ManyToOne
+    @JoinColumn(name = "borrow_id")
+    private BorrowRecord borrow;
 
     @Column(name = "late_days")
     private Integer lateDays;
 
     @Column(name = "fine_amount")
-    private Double fineAmount;
+    private int fineAmount;
 
     @Column(name = "paid")
     private Boolean paid;
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private Date createdAt;
 }

@@ -1,0 +1,33 @@
+.add-book{
+    width:500px;
+    margin:auto;
+    padding:40px;
+}
+
+.book-form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.book-form input,
+.book-form textarea{
+    padding:10px;
+    border:1px solid #ccc;
+}
+
+textarea{
+    height:100px;
+}
+
+.form-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.save-btn{
+    background:#27ae60;
+    color:white;
+    border:none;
+    padding:10px;
+}

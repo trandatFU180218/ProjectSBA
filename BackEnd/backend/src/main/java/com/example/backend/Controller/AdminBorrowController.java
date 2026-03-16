@@ -19,14 +19,5 @@ public class AdminBorrowController {
         return borrowRecordRepository.findAll();
     }
 
-    @PutMapping("/{id}/return")
-    public BorrowRecord returnBook(@PathVariable Long id){
 
-        BorrowRecord record = borrowRecordRepository.findById(id).orElseThrow();
-
-        record.setStatus("RETURNED");
-        record.setReturn_date(new Date());
-
-        return borrowRecordRepository.save(record);
-    }
 }

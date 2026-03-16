@@ -22,14 +22,14 @@ public class BorrowRecord {
     @Temporal(TemporalType.DATE)
     private Date borrow_date;
 
-    @Temporal(TemporalType.DATE)
-    private Date return_date;
 
     @Temporal(TemporalType.DATE)
     private Date due_date;
 
     private String status;
 
-    private Long user_id;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }

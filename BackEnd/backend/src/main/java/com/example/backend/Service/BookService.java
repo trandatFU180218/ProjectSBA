@@ -6,6 +6,8 @@ import com.example.backend.Entity.Category;
 import com.example.backend.Repository.BookRepository;
 import com.example.backend.Repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,9 +21,11 @@ public class BookService {
     @Autowired
     private CategoryRepository caterepo;
 
-    public List<BookDTO> getAll() {
+    public List<BookDTO> getAll(Pageable pageable) {
 
-        List<Book> books = repo.findAll();
+        Page<Book> page = repo.findAll(pageable);
+
+        List<Book> books = page.getContent();
 
         return books.stream().map(book -> {
             BookDTO dto = new BookDTO();
@@ -34,12 +38,29 @@ public class BookService {
         }).toList();
     }
 
-    public List<Book> getByCategoryName(String name){
+    public List<BookDTO> searchBooks(String keyword, Long categoryId) {
+
+        List<Book> books = repo.searchBooks(keyword, categoryId);
+
+        return books.stream().map(book -> {
+            BookDTO dto = new BookDTO();
+            dto.setId(book.getId());
+            dto.setTitle(book.getTitle());
+            dto.setAuthor(book.getAuthor());
+            dto.setImageUrl(book.getImageUrl());
+            dto.setCategoryName(book.getCategory().getName());
+            return dto;
+        }).toList();
+    }
+
+
+    public List<Book> getByCategoryName(String name) {
         Category cate = caterepo.findByName(name).orElseThrow(() -> new RuntimeException("Category not found"));
         return repo.findBooksByCategoryId(cate.getId());
     }
 
-    public Optional<Book> findById(Long id){
+
+    public Optional<Book> findById(Long id) {
         return repo.findById(id);
     }
 }

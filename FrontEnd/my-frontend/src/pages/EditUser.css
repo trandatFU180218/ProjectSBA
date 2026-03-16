@@ -1,0 +1,76 @@
+.edit-user-container {
+    width: 420px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ff6a00;
+}
+
+.edit-user-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.edit-user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.edit-user-form input,
+.edit-user-form select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: border 0.2s;
+}
+
+.edit-user-form input:focus,
+.edit-user-form select:focus {
+    outline: none;
+    border: 1px solid black ;
+}
+
+.edit-user-form input[readonly] {
+    background-color: #f2f2f2;
+    cursor: not-allowed;
+    color: #ff6a00;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.form-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.update-btn {
+    background-color: #ff7a00;
+    color: white;
+}
+
+.update-btn:hover {
+    background-color: #e96e00;
+}
+
+.cancel-btn {
+    background-color: #ccc;
+}
+
+.cancel-btn:hover {
+    background-color: #b5b5b5;
+}

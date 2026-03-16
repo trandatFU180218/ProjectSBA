@@ -1,19 +1,19 @@
 package com.example.backend.DTO;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-public class BookDTO {
-    private Long id;
+@Data
+public class MyBookDTO {
+    private Long borrowDetailId;
     private String title;
     private String author;
-    private String imageUrl;
-    private String categoryName;
-
+    private String barcode;
+    private Date borrowDate;
+    private Date dueDate;
 }

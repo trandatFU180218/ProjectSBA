@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "BorrowDetails")
 @AllArgsConstructor
@@ -16,7 +18,14 @@ public class BorrowDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long borrow_id;
+    @ManyToOne
+    @JoinColumn(name = "borrow_id")
+    private BorrowRecord borrow;
 
-    private Long copy_id;
+    @ManyToOne
+    @JoinColumn(name = "copy_id")
+    private BookCopy copy ;
+
+    @Column(name = "return_date")
+    private Date returnDate;
 }

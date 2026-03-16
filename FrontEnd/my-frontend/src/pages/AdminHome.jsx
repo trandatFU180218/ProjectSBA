@@ -68,11 +68,11 @@ function AdminHome() {
 
             <div className="admin-menu">
 
-                <button onClick={() => navigate("/admin/books")}>
+                <button onClick={() => navigate("/AdminBook")}>
                     Manage Books
                 </button>
 
-                <button onClick={() => navigate("/admin/users")}>
+                <button onClick={() => navigate("/AdminUser")}>
                     Manage Users
                 </button>
 

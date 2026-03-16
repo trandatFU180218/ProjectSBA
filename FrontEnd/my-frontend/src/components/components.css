@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 22px 22px 22px 0;
+  padding: 5px;
   background:#ffc49a;
 }
 
@@ -78,7 +78,7 @@
 
 .navbar {
   display: flex;
-  background: #f26522;
+  background: #ff6a00;
   color: white;
   padding: 10px;
   display: flex;
@@ -95,13 +95,32 @@
 .navbar span:hover{
   color: white;
   transform: scale(1.1);
+  transition: all 0.2s ease;
 }
 
-.category-sidebar {
-  width: 250px;
-  background: #f5f5f5;
-  padding: 10px;
-  margin-left: 20px;
+.category-sidebar{
+  background: transparent;
+  display: flex;
+  align-items: center;
+
+}
+
+.category-dropdown{
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.category-dropdown:hover{
+  transform: scale(1.1) ;
+  transition: all 0.3s ease;
+}
+
+.category-dropdown option{
+  color: black;
 }
 
 .category-item {

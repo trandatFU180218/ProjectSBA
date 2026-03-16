@@ -19,8 +19,10 @@ public class BookCopy {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "book_id")
-    private long bookId;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
 
     private String barcode;
 

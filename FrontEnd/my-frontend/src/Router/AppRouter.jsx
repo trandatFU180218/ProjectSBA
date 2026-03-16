@@ -3,6 +3,15 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import AdminHome from "../pages/AdminHome";
+import AdminBook from "../pages/AdminBook";
+import AddBook from "../pages/AddBook";
+import EditBook from "../pages/EditBook";
+import AdminUser from "../pages/AdminUser";
+import AddUser from "../pages/AddUser";
+import EditUser from "../pages/EditUser";
+import BookList from "../pages/BookList";
+import MyBooks from "../pages/MyBook";
+import Fines from "../pages/MyFine";
 
 export default function AppRouter() {
   return (
@@ -12,6 +21,17 @@ export default function AppRouter() {
         <Route path="/" element={<Login />} />
         <Route path="/Register" element={<Register/>}/>
         <Route path="/Admin" element={<AdminHome/>}/>
+        <Route path="/AdminBook" element={<AdminBook/>}/>
+        <Route path="/AddBook" element={<AddBook/>}/>
+        <Route path="/EditBook/:id" element={<EditBook/>}/>
+        <Route path="/AdminUser" element={<AdminUser/>}/>
+        <Route path="/AddUser" element={<AddUser/>}/>
+        <Route path="/EditUser/:id" element={<EditUser/>}/>
+        <Route path="/books" element={<BookList/>}/>
+
+        <Route path="/my-books" element={<MyBooks/>}/>
+
+        <Route path="/fines" element={<Fines/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,55 @@
+.admin-books{
+    padding:40px;
+}
+
+.admin-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position: sticky;
+}
+
+.search-box{
+    margin:20px 0;
+}
+
+.search-box input{
+    padding:8px;
+    width:250px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    table-layout: fixed;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.add-btn{
+    background:#27ae60;
+    color:white;
+    padding:8px 15px;
+    border:none;
+    margin-right:10px;
+}
+
+.edit-btn{
+    background:#3498db;
+    color:white;
+    border:none;
+    padding:5px 10px;
+    margin-right:5px;
+}
+
+.delete-btn{
+    background:#e74c3c;
+    color:white;
+    border:none;
+    padding:5px 10px;
+}
