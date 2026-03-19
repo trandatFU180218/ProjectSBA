@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface BorrowDetailRepository extends JpaRepository<BorrowDetail,Long> {
     List<BorrowDetail> findByBorrowUserIdAndReturnDateIsNull(Long userId);
+
+    List<BorrowDetail> findByReturnDateIsNull();
 }

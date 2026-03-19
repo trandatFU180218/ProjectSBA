@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function Navbar({ categories, onFilter }) {
   const navigate = useNavigate();
+  const userId = localStorage.getItem("userId");
   return (
     <div className="navbar">
 
@@ -17,11 +18,11 @@ function Navbar({ categories, onFilter }) {
         onFilter={onFilter}
       />
 
-      <span>Review sách</span>
+      <span onClick={()=>navigate("/books")}>Review sách</span>
 
-      <span>My Books</span>
+      <span onClick={()=>navigate("/my-books")}>My Books</span>
 
-      <span>Profile</span>
+      <span onClick={()=>navigate(`/fines/${userId}`)}>Profile</span>
 
     </div>
   );

@@ -12,6 +12,9 @@ import EditUser from "../pages/EditUser";
 import BookList from "../pages/BookList";
 import MyBooks from "../pages/MyBook";
 import Fines from "../pages/MyFine";
+import BookDetail from "../pages/BookDetail";
+import BorrowManager from "../pages/BorrowManager";
+import FineManager from "../pages/FineManager";
 
 export default function AppRouter() {
   return (
@@ -31,7 +34,10 @@ export default function AppRouter() {
 
         <Route path="/my-books" element={<MyBooks/>}/>
 
-        <Route path="/fines" element={<Fines/>}/>
+        <Route path="/fines/:id" element={<Fines/>}/>
+        <Route path="/bookDetail/:id" element={<BookDetail/>}/>
+        <Route path="/borrow-manager" element={<BorrowManager/>}/>
+        <Route path="/fine-manager" element={<FineManager/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -1,52 +1,64 @@
 import React, { useEffect, useState } from "react";
-import { getMyBooks, returnBook } from "../api/axiosClient";
+import { getMyBooks } from "../api/axiosClient";
+import "./MyBook.css";  
+import { useNavigate } from "react-router-dom";
 
-function MyBooks() {
-
+function MyBook() {
   const [books, setBooks] = useState([]);
-
-  const userId = 1;
+  const userId = localStorage.getItem("userId") ; 
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadMyBooks();
   }, []);
 
   const loadMyBooks = async () => {
-    const res = await getMyBooks(userId);
-    setBooks(res.data);
+    try {
+      const res = await getMyBooks(userId);
+      setBooks(res.data);
+    } catch (err) {
+      console.error("Lỗi tải sách đã mượn:", err);
+    }
   };
 
-  const handleReturn = async (borrowDetailId) => {
-    await returnBook(borrowDetailId);
-    alert("Return success");
-    loadMyBooks();
-  };
+  // const handleReturn = async (borrowDetailId) => {
+  //   try {
+  //     await returnBook(borrowDetailId);
+  //     alert("Trả sách thành công!");
+  //     loadMyBooks(); 
+  //   } catch (err) {
+  //     alert("Không thể trả sách: " + (err.response?.data || "Lỗi hệ thống"));
+  //   }
+  // };
 
   return (
-    <div>
-
+    <div className="mybooks-container">
       <h2>My Books</h2>
+      <button className="back-btn" onClick={() => navigate("/Home")}>
+        ← Quay lại
+      </button>
 
-      {books.map((b) => (
-        <div key={b.borrowDetailId} style={{border:"1px solid gray", margin:"10px", padding:"10px"}}>
+      {books.length === 0 ? (
+        <div className="no-books">Bạn chưa mượn cuốn sách nào</div>
+      ) : (
+        <div className="my-books-grid">
+          {books.map((b) => (
+            <div key={b.borrowDetailId} className="my-book-card">
+              <div className="book-info">
+                <h3 className="book-title">{b.title}</h3>
+                <p className="book-author">Author: {b.author}</p>
 
-          <h3>{b.title}</h3>
-
-          <p>Author: {b.author}</p>
-
-          <p>Borrow Date: {b.borrowDate}</p>
-
-          <p>Due Date: {b.dueDate}</p>
-
-          <button onClick={() => handleReturn(b.borrowDetailId)}>
-            Return
-          </button>
-
+                <div className="book-dates">
+                  <p className="borrow-date">Borrow Date: {b.borrowDate}</p>
+                  <p className="due-date">Due Date: {b.dueDate}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-
+      )}
     </div>
   );
 }
 
-export default MyBooks;
+export default MyBook;

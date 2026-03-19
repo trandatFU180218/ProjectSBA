@@ -1,0 +1,133 @@
+/* MyBooks.css */
+
+.mybooks-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.mybooks-container h2 {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 32px;
+  padding-left: 12px;
+  border-left: 5px solid #ff6a00;
+  font-weight: 600;
+}
+
+/* Grid hoặc list card - dùng flex hoặc grid tùy thích, ở đây dùng grid cho dễ responsive */
+.my-books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+/* Card từng cuốn sách đã mượn */
+.my-book-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+.my-book-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(255, 106, 0, 0.18);
+  border-color: #ff6a00;
+}
+
+.book-info {
+  padding: 20px 24px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.book-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+  line-height: 1.4;
+}
+
+.book-author {
+  margin: 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.book-dates {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.book-dates p {
+  margin: 6px 0;
+}
+
+.borrow-date {
+  color: #2c7a2c; /* xanh lá - ngày mượn */
+}
+
+.due-date {
+  color: #d32f2f; /* đỏ - hạn trả */
+  font-weight: 500;
+}
+
+/* Nút trả sách */
+.return-btn {
+  margin: 0 24px 20px;
+  padding: 12px;
+  background: #ff6a00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s ease;
+}
+
+.return-btn:hover {
+  background: #e55f00;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 106, 0, 0.25);
+}
+
+.return-btn:active {
+  transform: translateY(0);
+}
+
+/* Trạng thái khi không có sách */
+.no-books {
+  text-align: center;
+  padding: 80px 20px;
+  color: #777;
+  font-size: 1.2rem;
+  background: #f9f9f9;
+  border-radius: 12px;
+  border: 1px dashed #ddd;
+}
+
+/* Responsive nhỏ */
+@media (max-width: 768px) {
+  .my-books-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .book-info {
+    padding: 18px 20px;
+  }
+
+  .mybooks-container h2 {
+    font-size: 1.8rem;
+  }
+}

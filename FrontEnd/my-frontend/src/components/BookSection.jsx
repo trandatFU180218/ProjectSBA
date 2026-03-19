@@ -19,7 +19,7 @@ function BookSection({ title, books = [] }) {
       </div>
 
     </div>
-  );
+  );  
 }
 
 export default BookSection;

@@ -76,11 +76,11 @@ function AdminHome() {
                     Manage Users
                 </button>
 
-                <button onClick={() => navigate("/admin/borrows")}>
+                <button onClick={() => navigate("/borrow-manager")}>
                     Manage Borrows
                 </button>
 
-                <button onClick={() => navigate("/admin/fines")}>
+                <button onClick={() => navigate("/fine-manager")}>
                     Manage Fines
                 </button>
 

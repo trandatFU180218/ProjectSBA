@@ -21,7 +21,7 @@ public class Fine {
 
     @ManyToOne
     @JoinColumn(name = "borrow_id")
-    private BorrowRecord borrow;
+    private BorrowDetail borrowDetail;
 
     @Column(name = "late_days")
     private Integer lateDays;

@@ -1,0 +1,165 @@
+/* borrow-manager.css */
+.borrow-manager {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #2d2d2d;
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+.borrow-manager h2 {
+  color: #ff6a00;
+  font-size: 1.85rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #ff6a00;
+  display: inline-block;
+}
+
+.back-btn {
+  background: #ff6a00;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #e55f00;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 106, 0, 0.25);
+}
+
+.no-data {
+  color: #777;
+  font-size: 1.1rem;
+  font-style: italic;
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* Table container cho responsive */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  background: white;
+  margin-bottom: 30px;
+}
+
+.borrow-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px; /* đảm bảo đủ rộng để scroll ngang nếu cần */
+}
+
+.borrow-table th,
+.borrow-table td {
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+  font-size: 0.98rem;
+}
+
+.borrow-table th {
+  background: #ff6a00;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.borrow-table td {
+  color: #333;
+}
+
+.borrow-table tr:hover {
+  background: #fff5eb; /* cam rất nhạt */
+  transition: background 0.15s;
+}
+
+.borrow-table .action-btn {
+  background: #ff6a00;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.borrow-table .action-btn:hover {
+  background: #e55f00;
+  transform: scale(1.04);
+  box-shadow: 0 3px 10px rgba(255, 106, 0, 0.3);
+}
+
+.borrow-table .action-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Responsive - chuyển sang kiểu card trên mobile */
+@media (max-width: 768px) {
+  .borrow-table {
+    display: block;
+  }
+
+  .borrow-table thead {
+    display: none;
+  }
+
+  .borrow-table tr {
+    display: block;
+    margin-bottom: 20px;
+    border: 1px solid #ffd0a8;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .borrow-table td {
+    display: block;
+    text-align: right;
+    padding: 12px 16px;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+  }
+
+  .borrow-table td:last-child {
+    border-bottom: none;
+    text-align: center;
+    padding: 16px;
+  }
+
+  .borrow-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 16px;
+    width: 45%;
+    font-weight: 600;
+    color: #555;
+    text-align: left;
+  }
+
+  .borrow-table .action-btn {
+    width: 90%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+}

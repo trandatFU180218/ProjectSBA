@@ -1,38 +1,60 @@
 import React, { useEffect, useState } from "react";
-import { getMyFines } from "../api/axiosClient";
+import { getMyFine } from "../api/axiosClient";
+import "./MyFine.css";   
+import { useNavigate } from "react-router-dom";
+
 
 function Fines() {
-
   const [fines, setFines] = useState([]);
+  const userId = localStorage.getItem("userId");
 
-  const userId = 1;
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadFines();
   }, []);
 
   const loadFines = async () => {
-    const res = await getMyFines(userId);
-    setFines(res.data);
+    try {
+      const res = await getMyFine(userId);
+      setFines(res.data || []);
+    } catch (error) {
+      console.error("Error loading fines:", error);
+    }
   };
 
   return (
-    <div>
-
+    <div className="home-my-fine">
       <h2>My Fines</h2>
+      <button className="back-btn" onClick={() => navigate("/Home")}>
+        ← Quay lại
+      </button>
 
-      {fines.map((f) => (
-        <div key={f.id} style={{border:"1px solid gray", margin:"10px", padding:"10px"}}>
 
-          <p>Late Days: {f.late_days}</p>
-
-          <p>Fine Amount: {f.fine_amount} VND</p>
-
-          <p>Status: {f.paid ? "Paid" : "Unpaid"}</p>
-
-        </div>
-      ))}
-
+      {fines.length === 0 ? (
+        <p style={{ color: "#777", fontStyle: "italic" }}>
+          Bạn chưa có khoản phạt nào.
+        </p>
+      ) : (
+        fines.map((f) => (
+          <div key={f.id} className="fine-card">
+            <p>
+              <strong>Late Days:</strong> 
+              <span>{f.lateDays} ngày</span>
+            </p>
+            <p>
+              <strong>Fine Amount:</strong> 
+              <span>{f.fineAmount.toLocaleString("vi-VN")} VND</span>
+            </p>
+            <p>
+              <strong>Status:</strong> 
+              <span className={f.paid ? "status-paid" : "status-unpaid"}>
+                {f.paid ? "Paid" : "Unpaid"}
+              </span>
+            </p>
+          </div>
+        ))
+      )}
     </div>
   );
 }

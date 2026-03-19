@@ -38,6 +38,21 @@ public class BookService {
         }).toList();
     }
 
+    public List<BookDTO> getBookList() {
+
+        List<Book> books = repo.findAll();
+
+        return books.stream().map(book -> {
+            BookDTO dto = new BookDTO();
+            dto.setId(book.getId());
+            dto.setTitle(book.getTitle());
+            dto.setAuthor(book.getAuthor());
+            dto.setImageUrl(book.getImageUrl());
+            dto.setCategoryName(book.getCategory().getName());
+            return dto;
+        }).toList();
+    }
+
     public List<BookDTO> searchBooks(String keyword, Long categoryId) {
 
         List<Book> books = repo.searchBooks(keyword, categoryId);
@@ -54,9 +69,18 @@ public class BookService {
     }
 
 
-    public List<Book> getByCategoryName(String name) {
-        Category cate = caterepo.findByName(name).orElseThrow(() -> new RuntimeException("Category not found"));
-        return repo.findBooksByCategoryId(cate.getId());
+    public List<BookDTO> getByCategoryId(Long id, Pageable pageable){
+        List<Book> books = repo.getBooksByCategory_Id(id, pageable);
+
+        return books.stream().map(book -> {
+            BookDTO dto = new BookDTO();
+            dto.setId(book.getId());
+            dto.setTitle(book.getTitle());
+            dto.setAuthor(book.getAuthor());
+            dto.setImageUrl(book.getImageUrl());
+            dto.setCategoryName(book.getCategory().getName());
+            return dto;
+        }).toList();
     }
 
 

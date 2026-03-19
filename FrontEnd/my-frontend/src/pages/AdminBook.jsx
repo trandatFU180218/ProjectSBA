@@ -37,7 +37,7 @@ function AdminBooks() {
         fetch(`http://localhost:8080/backend/admin-book/${id}`, {
             method: "DELETE"
         })
-        .then(() => fetchBooks());
+            .then(() => fetchBooks());
     };
 
     const filteredBooks = books.filter(book =>
@@ -101,59 +101,37 @@ function AdminBooks() {
                 </thead>
 
                 <tbody>
-
                     {filteredBooks.map(book => (
-
                         <tr key={book.id}>
-
-                            <td>{book.id}</td>
-
-                            <td>{book.category.name}</td>
-
-                            <td>
-                                <img
-                                    src={book.imageUrl}
-                                    alt=""
-                                    width="50"
-                                />
+                            <td data-label="ID">{book.id}</td>
+                            <td data-label="Category">{book.category?.name || "N/A"}</td>
+                            <td data-label="Image">
+                                <img src={book.imageUrl} alt={book.title} width="60" height="80" />
                             </td>
-
-                            <td>{book.title}</td>
-
-                            <td>{book.author}</td>
-
-                            <td>{book.publisher}</td>
-
-                            <td>{book.publishYear}</td>
-
-                            <td>{book.isbn}</td>
-
-                            <td>{book.createdAt}</td>
-
-                            <td>
-
+                            <td data-label="Title">{book.title}</td>
+                            <td data-label="Author">{book.author}</td>
+                            <td data-label="Publisher">{book.publisher}</td>
+                            <td data-label="Year">{book.publishYear}</td>
+                            <td data-label="ISBN">{book.isbn}</td>
+                            <td data-label="Created At">
+                                {book.createdAt ? new Date(book.createdAt).toLocaleDateString("vi-VN") : "-"}
+                            </td>
+                            <td data-label="Action">
                                 <button
                                     className="edit-btn"
-                                    onClick={() =>
-                                        navigate(`/EditBook/${book.id}`)
-                                    }   
+                                    onClick={() => navigate(`/EditBook/${book.id}`)}
                                 >
                                     Edit
                                 </button>
-
                                 <button
                                     className="delete-btn"
                                     onClick={() => deleteBook(book.id)}
                                 >
                                     Delete
                                 </button>
-
                             </td>
-
                         </tr>
-
                     ))}
-
                 </tbody>
 
             </table>

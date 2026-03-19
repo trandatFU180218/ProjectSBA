@@ -1,0 +1,77 @@
+/* fines.css */
+.home-my-fine {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 16px;
+  font-family: -apple-system, BlinkMacacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #2d2d2d;
+}
+
+.home-my-fine h2 {
+  color: #ff6a00;
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #ff6a00;
+  letter-spacing: -0.5px;
+}
+
+.fine-card {
+  background: white;
+  border: 1px solid #ffd0a8;          /* màu nhạt của #ff6a00 */
+  border-left: 5px solid #ff6a00;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  transition: all 0.18s ease;
+}
+
+.fine-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 106, 0, 0.15);
+  border-color: #ff6a00;
+}
+
+.fine-card p {
+  margin: 10px 0;
+  font-size: 1.05rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 380px;
+}
+
+.fine-card p strong {
+  font-weight: 600;
+  color: #333;
+  min-width: 110px;
+}
+
+.fine-card .status-paid {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.fine-card .status-unpaid {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+/* Nếu muốn responsive hơn */
+@media (max-width: 500px) {
+  .home-my-fine h2 {
+    font-size: 1.65rem;
+  }
+
+  .fine-card p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .fine-card p strong {
+    min-width: auto;
+  }
+}

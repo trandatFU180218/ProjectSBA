@@ -30,9 +30,12 @@ function Login() {
         const data = await res.json();
         console.log(data);
         console.log("role:", data.role);
-        localStorage.setItem("role",data.role);
+        localStorage.setItem("role", data.role);
+        localStorage.setItem("userId", data.id);
+        localStorage.setItem("username", data.name);
+        console.log("userId:", localStorage.getItem("userId"));
         const role = Number(data.role);
-        
+
 
 
         if (role === 1) {
@@ -43,7 +46,7 @@ function Login() {
             console.log("GO USER HOME");
         }
 
-
+        
         alert("Đăng nhập thành công");
     };
 

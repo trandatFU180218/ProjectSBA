@@ -40,7 +40,7 @@ function Header({onSearch }) {
       </div>
 
       <div className="login">
-        <span> Logout</span>
+        <span onClick={()=>navigate("/")}> Logout</span>
       </div>
 
     </div>

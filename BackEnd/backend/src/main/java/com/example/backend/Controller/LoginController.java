@@ -50,6 +50,7 @@ public class LoginController {
 //        );
 
         return Map.of(
+                "id", user.getId(),
                 "username", user.getName(),
                 "role", user.getRole_id()
         );

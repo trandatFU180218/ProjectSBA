@@ -61,7 +61,7 @@ public class BorrowService {
         return "Borrow success";
     }
 
-    public List<MyBookDTO> getMyBooks(Long userId){
+    public List<MyBookDTO> getMyBooks(Long userId) {
 
         List<BorrowDetail> details =
                 borrowDetailRepo.findByBorrowUserIdAndReturnDateIsNull(userId);
@@ -86,38 +86,35 @@ public class BorrowService {
     }
 
     @Transactional
-    public String returnBook(Long borrowDetailId){
+    public String returnBook(Long borrowDetailId) {
 
         BorrowDetail detail = borrowDetailRepo
                 .findById(borrowDetailId)
                 .orElseThrow();
 
         Date today = new Date();
-
         detail.setReturnDate(today);
 
-        BorrowRecord record = detail.getBorrow();
-
-        Date dueDate = record.getDue_date();
+        Date dueDate = detail.getBorrow().getDue_date();
 
         long diff = today.getTime() - dueDate.getTime();
+        long lateDays = diff / (1000 * 60 * 60 * 24);
 
-        if(diff > 0){
+        if (lateDays < 0) lateDays = 0;
 
-            long lateDays = diff / (1000 * 60 * 60 * 24);
+        int fineAmount = (int) lateDays * 20000;
 
-            Integer fineAmount = (int) lateDays * 20000;
+        // 👉 tạo fine cho từng sách
+        Fine fine = new Fine();
+        fine.setBorrowDetail(detail);
+        fine.setLateDays((int) lateDays);
+        fine.setFineAmount(fineAmount);
+        fine.setPaid(lateDays == 0);
+        fine.setCreatedAt(new Date());
 
-            Fine fine = new Fine();
-            fine.setBorrow(record);
-            fine.setLateDays((int) lateDays);
-            fine.setFineAmount(fineAmount);
-            fine.setPaid(false);
-            fine.setCreatedAt(new Date());
+        fineRepository.save(fine);
 
-            fineRepository.save(fine);
-        }
-
+        // update trạng thái sách
         BookCopy copy = detail.getCopy();
         copy.setStatus("AVAILABLE");
 
@@ -126,5 +123,4 @@ public class BorrowService {
 
         return "Return success";
     }
-
 }

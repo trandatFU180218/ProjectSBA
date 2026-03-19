@@ -2,6 +2,7 @@ package com.example.backend.Controller;
 
 import com.example.backend.DTO.MyBookDTO;
 import com.example.backend.Entity.BorrowDetail;
+import com.example.backend.Repository.BorrowDetailRepository;
 import com.example.backend.Service.BorrowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ import java.util.List;
 public class BorrowController {
     @Autowired
     private BorrowService borrowService;
+
+    @Autowired
+    private BorrowDetailRepository repo;
 
     @PostMapping
     public String borrowBook(@RequestParam Long userId,
@@ -31,5 +35,10 @@ public class BorrowController {
     @PostMapping("/return/{borrowDetailId}")
     public String returnBook(@PathVariable Long borrowDetailId){
         return borrowService.returnBook(borrowDetailId);
+    }
+
+    @GetMapping("/borrow-not-return")
+    public List<BorrowDetail> getAllBorrowNotRefund(){
+        return repo.findByReturnDateIsNull();
     }
 }

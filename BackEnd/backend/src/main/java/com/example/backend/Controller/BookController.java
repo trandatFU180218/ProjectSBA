@@ -7,9 +7,11 @@ import com.example.backend.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/books")
@@ -25,19 +27,24 @@ public class BookController {
         return service.getAll(pageable);
     }
 
+    @GetMapping("/booklist")
+    public List<BookDTO> getBookList(){
+        return service.getBookList();
+    }
+
     @GetMapping("/{id}")
     public Book findById(@PathVariable Long id){
         return service.findById(id).orElse(null);
     }
 
     @GetMapping("/category/{id}")
-    public List<Book> getTopBooksByCategory(@PathVariable Long id,
+    public List<BookDTO> getTopBooksByCategory(@PathVariable Long id,
                                             @RequestParam int page,
                                             @RequestParam int size){
 
         Pageable pageable = PageRequest.of(page,size);
 
-        return repo.getByCategoryId(id, pageable);
+        return service.getByCategoryId(id, pageable);
     }
 
     @GetMapping("/search")
@@ -48,8 +55,9 @@ public class BookController {
         return service.searchBooks(keyword, categoryId);
     }
 
-//    @GetMapping("/top10")
-//    public List<Book> get10Book(){
-//        return repo.getTop10Books();
-//    }
+    @GetMapping("/view/{id}")
+    public Book bookDetail(@PathVariable long id){
+        return repo.findById(id).orElseThrow();
+
+    }
 }

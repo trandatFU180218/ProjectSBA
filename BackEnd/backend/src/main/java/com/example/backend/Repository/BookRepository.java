@@ -1,5 +1,6 @@
 package com.example.backend.Repository;
 
+import com.example.backend.DTO.BookDTO;
 import com.example.backend.Entity.Book;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -7,14 +8,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
-
-    List<Book> findBooksByCategoryId(Long category_id);
-
-    List<Book> getByCategoryId(Long id, Pageable pageable);
-
-//    List<Book> getTop10Books();
+    List<Book> getBooksByCategory_Id(Long id,Pageable pageable);
 
     @Query("""
     SELECT b FROM Book b
