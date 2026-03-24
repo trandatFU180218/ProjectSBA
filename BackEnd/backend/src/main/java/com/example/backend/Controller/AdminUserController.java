@@ -2,6 +2,7 @@ package com.example.backend.Controller;
 
 import com.example.backend.Entity.Role;
 import com.example.backend.Entity.User;
+import com.example.backend.Repository.RoleRepository;
 import com.example.backend.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/admin-user")
+@RequestMapping("/admin/user")
 public class AdminUserController {
     @Autowired
     private UserRepository userRepository;
@@ -57,16 +58,27 @@ public class AdminUserController {
         return "User deleted";
     }
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
 
         User user = userRepository.findById(id).orElseThrow();
 
+
         user.setName(updatedUser.getName());
         user.setEmail(updatedUser.getEmail());
         user.setPhone(updatedUser.getPhone());
         user.setStatus(updatedUser.getStatus());
-        user.setRole_id(updatedUser.getRole_id());
+
+        if (updatedUser.getRole() != null && updatedUser.getRole().getId() != null) {
+            Role role = roleRepository
+                    .findById(updatedUser.getRole().getId())
+                    .orElseThrow();
+
+            user.setRole(role);
+        }
 
         return userRepository.save(user);
     }

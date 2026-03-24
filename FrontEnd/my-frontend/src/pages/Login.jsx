@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 function Login() {
 
-    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
@@ -18,35 +18,36 @@ function Login() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name: name,
+                email: email,  
                 password: password
             })
         });
 
         if (!res.ok) {
-            alert("Tài khoản hoặc mật khẩu không đúng! Đăng nhập thất bại!")
+            alert("Tài khoản hoặc mật khẩu không đúng!");
             return;
         }
+
         const data = await res.json();
-        console.log(data);
-        console.log("role:", data.role);
-        localStorage.setItem("role", data.role);
-        localStorage.setItem("userId", data.id);
-        localStorage.setItem("username", data.name);
-        console.log("userId:", localStorage.getItem("userId"));
-        const role = Number(data.role);
 
 
+        // LƯU TOKEN 
+        localStorage.setItem("token", data.token);
 
-        if (role === 1) {
-            console.log("GO ADMIN");
-            navigate("/Admin")
-        } else if (role === 3) {
+        // LƯU USER
+        localStorage.setItem("user", JSON.stringify(data.user));
+        //
+        localStorage.setItem("id", JSON.stringify(data.user.id))
+
+        const role = data.user.role.name.trim().toUpperCase();
+        console.log("role",role)
+
+        if (role === "ADMIN") { 
+            navigate("/admin/home");
+        } else {
             navigate("/Home");
-            console.log("GO USER HOME");
         }
 
-        
         alert("Đăng nhập thành công");
     };
 
@@ -65,9 +66,9 @@ function Login() {
                         <label>Email *</label>
                         <input
                             type="text"
-                            placeholder="name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
+                            placeholder="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                         />
 
                         <label>Mật khẩu *</label>

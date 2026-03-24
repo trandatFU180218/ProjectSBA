@@ -4,6 +4,14 @@ import "./AddUser.css";
 
 function AddUser() {
 
+    const getAuthHeader = () => {
+        const token = localStorage.getItem("token");
+        return {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        };
+    };
+
     const navigate = useNavigate();
 
     const [user, setUser] = useState({
@@ -16,6 +24,8 @@ function AddUser() {
         status: ""
     });
 
+
+
     const handleChange = (e) => {
         setUser({
             ...user,
@@ -26,30 +36,35 @@ function AddUser() {
 
     const handleSubmit = async (e) => {
 
-    e.preventDefault();
+        e.preventDefault();
 
-    if(user.password !== user.confirmPassword){
-        alert("Mật khẩu không giống nhau");
-        return;
-    }
+        if (user.password !== user.confirmPassword) {
+            alert("Mật khẩu không giống nhau");
+            return;
+        }
 
-    const {confirmPassword, ...userData} = user;
+        const { confirmPassword, role_id, ...rest } = user;
 
-    const res = await fetch("http://localhost:8080/backend/admin-user", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(userData)
-    });
+        const userData = {
+            ...rest,
+            role: {
+                id: Number(role_id)
+            }
+        };
 
-    if (res.ok) {
-        alert("Add user success");
-        navigate("/AdminUser");
-    } else {
-        alert("Add user failed");
-    }
-};
+        const res = await fetch("http://localhost:8080/backend/admin/user", {
+            method: "POST",
+            headers: getAuthHeader(),
+            body: JSON.stringify(userData)
+        });
+
+        if (res.ok) {
+            alert("Add user success");
+            navigate("/admin/user");
+        } else {
+            alert("Add user failed");
+        }
+    };
 
     return (
 
@@ -128,7 +143,7 @@ function AddUser() {
 
                     <button
                         type="button"
-                        onClick={() => navigate("/AdminUser")}
+                        onClick={() => navigate("/admin/user")}
                     >
                         Cancel
                     </button>

@@ -36,6 +36,8 @@ public class User {
     @CreationTimestamp
     private Date createdAt;
 
-    private Long role_id;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
 }

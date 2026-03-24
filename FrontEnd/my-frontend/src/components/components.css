@@ -44,7 +44,7 @@
 
 /* Login chiếm 1 phần */
 .login {
-  flex: 1;
+  flex: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,17 +129,13 @@
   border-bottom: 1px solid #ddd;
 }
 
-.banner img {
-  width: 800px;
-  margin-left: 70px;
-  margin-top: 10px;
-}
 
 .book-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   padding: 20px;
+  background: #ffc49a;
 }
 
 
@@ -292,4 +288,9 @@
 
 .borrow-btn:active {
   transform: translateY(0);
+}
+
+.book-section-title{
+  text-align: center;
+  margin: 50px 10px 30px 10px;
 }

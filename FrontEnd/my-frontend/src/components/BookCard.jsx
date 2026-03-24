@@ -1,29 +1,33 @@
 import React from "react";
 import "./components.css";
-import { borrowBook } from "../api/axiosClient"; // không cần viewBook ở đây
+
 import { useNavigate } from "react-router-dom";
 
 function BookCard({ book }) {
-  const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
 
-  const handleBorrow = async (e) => {
-    e.stopPropagation(); 
+  const getAuthHeader = () => {
+    const token = localStorage.getItem("token");
+    return {
+      "Authorization": "Bearer " + token,
+      "Content-Type": "application/json"
+    };
+  };
 
-    if (!userId) {
-      alert("Vui lòng đăng nhập để mượn sách!");
-      navigate("/"); 
-      return;
-    }
+  const handleBorrow = async (e) => {
+    e.stopPropagation();
 
     try {
-      await borrowBook(userId, book.id);
+      await fetch(`http://localhost:8080/backend/borrow?bookId=${book.id}`,{
+        method:"POST",
+        headers: getAuthHeader(),
+      });
       alert("Mượn sách thành công!");
     } catch (err) {
       console.error("Lỗi mượn sách:", err);
       alert(
         "Không thể mượn sách: " +
-          (err.response?.data?.message || "Lỗi hệ thống")
+        (err.response?.data?.message || "Lỗi hệ thống")
       );
     }
   };
@@ -35,18 +39,18 @@ function BookCard({ book }) {
   return (
     <div
       className="home-book-card"
-      onClick={handleView}           
+      onClick={handleView}
       style={{ cursor: "pointer" }}
     >
       <img src={book.imageUrl} alt={book.title} />
 
       <h4>{book.title}</h4>
 
-      <p>Author: {book.author}</p>           {/* sửa typo */}
+      <p>Author: {book.author}</p>
       <p>Category: {book.categoryName}</p>
 
       <button
-        onClick={handleBorrow}               // ← truyền hàm trực tiếp
+        onClick={handleBorrow}
         className="borrow-btn"
       >
         Mượn sách ngay

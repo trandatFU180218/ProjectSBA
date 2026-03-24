@@ -21,7 +21,7 @@ public class UserService {
         return repo.findByName(name);
     }
 
-    public Optional<User>    findByEmail(String email){
+    public User findByEmail(String email){
         return repo.findByEmail(email);
     }
 

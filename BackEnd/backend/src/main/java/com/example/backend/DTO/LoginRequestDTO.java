@@ -10,8 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LoginRequestDTO {
-    private Long userId;
-    private String name;
+    private String id;
+    private String email;
     private String password;
-    private Long role_id;
+
 }

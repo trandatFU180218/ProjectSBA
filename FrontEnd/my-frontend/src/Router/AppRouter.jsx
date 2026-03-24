@@ -1,4 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "./ProtectedRoute";
+
+// Pages
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -20,24 +23,139 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/Home" element={<Home />} />
+
+        {/* PUBLIC */}
         <Route path="/" element={<Login />} />
-        <Route path="/Register" element={<Register/>}/>
-        <Route path="/Admin" element={<AdminHome/>}/>
-        <Route path="/AdminBook" element={<AdminBook/>}/>
-        <Route path="/AddBook" element={<AddBook/>}/>
-        <Route path="/EditBook/:id" element={<EditBook/>}/>
-        <Route path="/AdminUser" element={<AdminUser/>}/>
-        <Route path="/AddUser" element={<AddUser/>}/>
-        <Route path="/EditUser/:id" element={<EditUser/>}/>
-        <Route path="/books" element={<BookList/>}/>
+        <Route path="/Register" element={<Register />} />
 
-        <Route path="/my-books" element={<MyBooks/>}/>
+        {/* USER */}
+        <Route
+          path="/Home"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/fines/:id" element={<Fines/>}/>
-        <Route path="/bookDetail/:id" element={<BookDetail/>}/>
-        <Route path="/borrow-manager" element={<BorrowManager/>}/>
-        <Route path="/fine-manager" element={<FineManager/>}/>
+        <Route
+          path="/books"
+          element={
+            <ProtectedRoute>
+              <BookList />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/bookDetail/:id"
+          element={
+            <ProtectedRoute>
+              <BookDetail />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/my-books"
+          element={
+            <ProtectedRoute>
+              <MyBooks />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/fines"
+          element={
+            <ProtectedRoute>
+              <Fines />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* ADMIN */}
+        <Route
+          path="/admin/home"
+          element={
+            <ProtectedRoute role="ADMIN">
+              <AdminHome />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/book"
+          element={
+            <ProtectedRoute role="ADMIN">
+              <AdminBook />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/AddBook"
+          element={
+            <ProtectedRoute role="ADMIN">
+              <AddBook />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/EditBook/:id"
+          element={
+            <ProtectedRoute role="ADMIN">
+              <EditBook />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/user"
+          element={
+            <ProtectedRoute role="ADMIN">
+              <AdminUser />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/AddUser"
+          element={
+            <ProtectedRoute role="ADMIN">
+              <AddUser />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/EditUser/:id"
+          element={
+            <ProtectedRoute role="ADMIN">
+              <EditUser />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/borrow-manager"
+          element={
+            <ProtectedRoute role="ADMIN">
+              <BorrowManager />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/fine-manager"
+          element={
+            <ProtectedRoute role="ADMIN">
+              <FineManager />
+            </ProtectedRoute>
+          }
+        />
+
       </Routes>
     </BrowserRouter>
   );

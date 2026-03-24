@@ -30,7 +30,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    // CORS config
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
 
@@ -53,20 +52,20 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .cors(cors -> {})   // bật cors
+                .cors(cors -> {})
                 .csrf(csrf -> csrf.disable())
 
                 .authorizeHttpRequests(auth -> auth
-                        //.requestMatchers("/deltabook/login").permitAll()
-                        .anyRequest().permitAll()
-
+                        .requestMatchers("/login", "/register").permitAll()
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                        .anyRequest().authenticated()
                 )
 
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                );
+                )
 
-                //.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

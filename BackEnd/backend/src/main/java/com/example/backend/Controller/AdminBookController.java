@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin-book")
+@RequestMapping("/admin/book")
 public class AdminBookController {
     @Autowired
     private BookRepository bookRepository;

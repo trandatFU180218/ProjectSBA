@@ -37,3 +37,4 @@ public class FineController {
         return fineRepo.save(f);
     }
 }
+    

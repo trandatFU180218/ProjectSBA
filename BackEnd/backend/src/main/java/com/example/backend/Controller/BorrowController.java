@@ -2,15 +2,19 @@ package com.example.backend.Controller;
 
 import com.example.backend.DTO.MyBookDTO;
 import com.example.backend.Entity.BorrowDetail;
+import com.example.backend.Entity.User;
 import com.example.backend.Repository.BorrowDetailRepository;
+import com.example.backend.Repository.UserRepository;
 import com.example.backend.Service.BorrowService;
+import com.example.backend.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/borrow")
 public class BorrowController {
     @Autowired
     private BorrowService borrowService;
@@ -18,26 +22,62 @@ public class BorrowController {
     @Autowired
     private BorrowDetailRepository repo;
 
-    @PostMapping
-    public String borrowBook(@RequestParam Long userId,
-                             @RequestParam Long bookId) {
+    @Autowired
+    private UserRepository userRepository;
+
+    @PostMapping("/borrow")
+    public String borrowBook(@RequestParam Long bookId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null
+                || !authentication.isAuthenticated()
+                || "anonymousUser".equals(authentication.getName())) {
+            throw new RuntimeException("Chưa đăng nhập");
+        }
+
+
+        System.out.println("AUTH NAME: " + authentication.getName());
+
+        String eName = authentication.getName() ;
+
+        User user = userRepository.findByEmail(eName);
+
+        if (user == null) {
+            throw new RuntimeException("User không tồn tại");
+        }
+
+        Long userId = user.getId();
 
         return borrowService.borrowBook(userId, bookId);
     }
 
-    @GetMapping("/my-books/{userId}")
-    public List<MyBookDTO> myBooks(@PathVariable Long userId){
+    @GetMapping("/my-books")
+    public List<MyBookDTO> myBooks() {
 
-        return borrowService.getMyBooks(userId);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
+        if (authentication == null
+                || !authentication.isAuthenticated()
+                || "anonymousUser".equals(authentication.getName())) {
+            throw new RuntimeException("Chưa đăng nhập");
+        }
+
+        String eName = authentication.getName();
+
+        if (eName == null) {
+            throw new RuntimeException("User không tồn tại");
+        }
+
+        User user = userRepository.findByEmail(eName);
+
+        return borrowService.getMyBooks(user.getId());
     }
 
-    @PostMapping("/return/{borrowDetailId}")
+    @PostMapping("/admin/return/{borrowDetailId}")
     public String returnBook(@PathVariable Long borrowDetailId){
         return borrowService.returnBook(borrowDetailId);
     }
 
-    @GetMapping("/borrow-not-return")
+    @GetMapping("/admin/borrow-not-return")
     public List<BorrowDetail> getAllBorrowNotRefund(){
         return repo.findByReturnDateIsNull();
     }

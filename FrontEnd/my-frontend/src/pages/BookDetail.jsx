@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { viewBook,borrowBook } from '../api/axiosClient';
+import { viewBook } from '../api/axiosClient';
 import './BookDetail.css';
 
 function BookDetail() {
@@ -10,6 +10,14 @@ function BookDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const userId = localStorage.getItem("userId");
+
+  const getAuthHeader = () => {
+    const token = localStorage.getItem("token");
+    return {
+      "Authorization": "Bearer " + token,
+      "Content-Type": "application/json"
+    };
+  };
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -31,24 +39,22 @@ function BookDetail() {
   if (error) return <div className="error">{error}</div>;
   if (!book) return <div className="not-found">Không tìm thấy sách</div>;
   
-  const handleBorrow = async () => {
-      if (!userId || userId === "null" || userId === "undefined")  {
-        alert("Vui lòng đăng nhập để mượn sách!");
-        navigate("/"); 
-        return;
-      }
-  
-      try {
-        await borrowBook(userId, id);
-        alert("Mượn sách thành công!");
-      } catch (err) {
-        console.error("Lỗi mượn sách:", err);
-        alert(
-          "Không thể mượn sách: " +
-            (err.response?.data?.message || "Lỗi hệ thống")
-        );
-      }
-    };
+  const handleBorrow = async (e) => {
+    e.stopPropagation();
+
+    try {
+      await fetch(`http://localhost:8080/backend/borrow?bookId=${book.id}`,{
+        Headers: getAuthHeader(),
+      });
+      alert("Mượn sách thành công!");
+    } catch (err) {
+      console.error("Lỗi mượn sách:", err);
+      alert(
+        "Không thể mượn sách: " +
+        (err.response?.data?.message || "Lỗi hệ thống")
+      );
+    }
+  };
 
   return (
     <div className="book-detail-container">

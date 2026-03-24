@@ -14,13 +14,26 @@ function AdminUser() {
         return "Unknown";
     };
 
+    const getAuthHeader = () => {
+        const token = localStorage.getItem("token");
+        return {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        };
+    };
+
+    
+
     const getStatus = (status) => {
         if (status === "1") return "ACTIVE";
         if (status === "2") return "BANNED";
     }
 
     const fetchUsers = async () => {
-        const res = await fetch("http://localhost:8080/backend/admin-user");
+        const res = await fetch("http://localhost:8080/backend/admin/user",{
+            method:"GET",
+            headers: getAuthHeader()
+        });
         const data = await res.json();
         setUsers(data);
     };
@@ -35,8 +48,9 @@ function AdminUser() {
 
         if (!window.confirm("Delete this user?")) return;
 
-        const res = await fetch(`http://localhost:8080/backend/admin-user/${id}`, {
-            method: "DELETE"
+        const res = await fetch(`http://localhost:8080/backend/admin/user/${id}`, {
+            method: "DELETE",
+            headers: getAuthHeader()
         });
 
         if (res.ok) {
@@ -57,12 +71,12 @@ function AdminUser() {
 
                     <button
                         className="add-btn"
-                        onClick={() => navigate("/AddUser")}
+                        onClick={() => navigate("/admin/AddUser")}
                     >
                         + Add User
                     </button>
 
-                    <button onClick={() => navigate("/Admin")}>
+                    <button onClick={() => navigate("/admin/home")}>
                         Back
                     </button>
 
@@ -101,7 +115,7 @@ function AdminUser() {
 
                                 <button
                                     className="edit-btn"
-                                    onClick={() => navigate(`/EditUser/${user.id}`)}
+                                    onClick={() => navigate(`/admin/EditUser/${user.id}`)}
                                 >
                                     Edit
                                 </button>

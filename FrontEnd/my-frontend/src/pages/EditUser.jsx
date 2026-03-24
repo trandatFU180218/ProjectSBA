@@ -15,37 +15,48 @@ function EditUser() {
         status: ""
     });
 
+    const getAuthHeader = () => {
+        const token = localStorage.getItem("token");
+        return {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        };
+    };
+
     useEffect(() => {
-        fetch(`http://localhost:8080/backend/admin-user/${id}`)
+        fetch(`http://localhost:8080/backend/admin/user/${id}`,
+            {
+                method: "GET",
+                headers: getAuthHeader(),
+            }
+        )
             .then(res => res.json())
             .then(data => setUser(data))
     }, [id]);
 
     const handleChange = (e) => {
 
-    const { name, value } = e.target;
+        const { name, value } = e.target;
 
-    setUser({
-        ...user,
-        [name]: name === "role_id" ? Number(value) : value
-    });
+        setUser({
+            ...user,
+            [name]: name === "role_id" ? Number(value) : value
+        });
 
-};
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const res = await fetch(`http://localhost:8080/backend/admin-user/${id}`, {
+        const res = await fetch(`http://localhost:8080/backend/admin/user/${id}`, {
             method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers:getAuthHeader(),
             body: JSON.stringify(user)
         });
 
         if (res.ok) {
             alert("Update success");
-            navigate("/AdminUser");
+            navigate("/admin/user");
         } else {
             alert("Update failed");
         }
@@ -94,7 +105,7 @@ function EditUser() {
                     <button
                         type="button"
                         className="cancel-btn"
-                        onClick={() => navigate("/AdminUser")}
+                        onClick={() => navigate("/admin/user")}
                     >
                         Cancel
                     </button>

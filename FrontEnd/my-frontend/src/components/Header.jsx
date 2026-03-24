@@ -18,8 +18,8 @@ function Header({onSearch }) {
 
   return (
     <div className="header">
-
-      <img src={banner} alt="bannerProject" className="Bannerpj" />
+      
+      <img src={banner} alt="bannerProject" className="Bannerpj"/>
 
       <form onSubmit={handleSearch}>
         <input
@@ -34,10 +34,6 @@ function Header({onSearch }) {
         </button>
       </form>
 
-      <div className="Borrow">
-        <GoCreditCard />
-        <span>Borrow</span>
-      </div>
 
       <div className="login">
         <span onClick={()=>navigate("/")}> Logout</span>

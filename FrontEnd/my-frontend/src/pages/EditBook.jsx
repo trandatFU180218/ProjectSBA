@@ -19,17 +19,34 @@ function EditBook() {
         description: "",
         imageUrl: ""
     });
+    const getAuthHeader = () => {
+        const token = localStorage.getItem("token");
+        return {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        };
+    };
 
     // load category
     const fetchCategory = async () => {
-        const res = await fetch("http://localhost:8080/backend/categories");
+        const res = await fetch("http://localhost:8080/backend/categories",
+            {
+                method: "GET",
+                headers: getAuthHeader()
+            }
+        );
         const data = await res.json();
         setCate(data);
     };
 
     // load book detail
     const fetchBook = async () => {
-        const res = await fetch(`http://localhost:8080/backend/books/${id}`);
+        const res = await fetch(`http://localhost:8080/backend/books/${id}`,
+            {
+                method: "GET",
+                headers: getAuthHeader()
+            }
+        );
         const data = await res.json();
 
         setBook({
@@ -66,17 +83,15 @@ function EditBook() {
             }
         };
 
-        const res = await fetch(`http://localhost:8080/backend/admin-book/${id}`, {
+        const res = await fetch(`http://localhost:8080/backend/admin/book/${id}`, {
             method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: getAuthHeader(),
             body: JSON.stringify(bookData)
         });
 
         if (res.ok) {
             alert("Update success");
-            navigate("/AdminBook");
+            navigate("/admin/book");
         } else {
             alert("Update failed");
         }
@@ -133,7 +148,7 @@ function EditBook() {
                         Update
                     </button>
 
-                    <button type="button" onClick={() => navigate("/AdminBook")}>
+                    <button type="button" onClick={() => navigate("/admin/book")}>
                         Cancel
                     </button>
 

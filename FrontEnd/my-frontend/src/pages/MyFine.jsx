@@ -16,7 +16,7 @@ function Fines() {
 
   const loadFines = async () => {
     try {
-      const res = await getMyFine(userId);
+      const res = await getMyFine();
       setFines(res.data || []);
     } catch (error) {
       console.error("Error loading fines:", error);

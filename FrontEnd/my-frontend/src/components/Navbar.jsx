@@ -22,7 +22,7 @@ function Navbar({ categories, onFilter }) {
 
       <span onClick={()=>navigate("/my-books")}>My Books</span>
 
-      <span onClick={()=>navigate(`/fines/${userId}`)}>Profile</span>
+      <span onClick={()=>navigate(`/fines`)}>My Fines</span>
 
     </div>
   );

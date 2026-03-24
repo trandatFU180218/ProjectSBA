@@ -7,12 +7,21 @@ function AddBook() {
     const [cate, setCate] = useState([]);
 
     const navigate = useNavigate();
+    const getAuthHeader = () => {
+        const token = localStorage.getItem("token");
+        return {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        };
+    };
 
     const ApiCate = `http://localhost:8080/backend/categories`;
 
     const fetchCategory = async () => {
         try {
-            const res = await fetch(ApiCate);
+            const res = await fetch(ApiCate, {
+                headers: getAuthHeader()
+            });
             const data = await res.json();
             setCate(data);
         } catch (error) {
@@ -43,30 +52,28 @@ function AddBook() {
     };
 
     const handleSubmit = async (e) => {
-    e.preventDefault();
+        e.preventDefault();
 
-    const bookData = {
-        ...book,
-        category: {
-            id: Number(book.category)
+        const bookData = {
+            ...book,
+            category: {
+                id: Number(book.category)
+            }
+        };
+
+        const res = await fetch("http://localhost:8080/backend/admin/book", {
+            method: "POST",
+            headers: getAuthHeader(),
+            body: JSON.stringify(bookData)
+        });
+
+        if (res.ok) {
+            alert("Add book success");
+            navigate("/admin/book");
+        } else {
+            alert("Add book failed");
         }
     };
-
-    const res = await fetch("http://localhost:8080/backend/admin-book", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(bookData)
-    });
-
-    if (res.ok) {
-        alert("Add book success");
-        navigate("/AdminBook");
-    } else {
-        alert("Add book failed");
-    }
-};
 
     return (
 
@@ -139,7 +146,7 @@ function AddBook() {
 
                     <button
                         type="button"
-                        onClick={() => navigate("/AdminBook")}
+                        onClick={() => navigate("/admin/book")}
                     >
                         Cancel
                     </button>

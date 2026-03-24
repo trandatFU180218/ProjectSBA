@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9c558aec-32b6-4292-ae2a-bd14b53f8bdb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AdminBookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AdminBookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AdminUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/AdminUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/BorrowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/BorrowController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/DashBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/DashBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/FineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/FineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/DTO/LoginRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/DTO/LoginRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Service/RegisterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Service/RegisterService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/Service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/security/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/security/JwtFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/security/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/security/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/com/example/backend/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/Router/AppRouter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/Router/AppRouter.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/api/axiosClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/api/axiosClient.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/Banner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/Banner.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/BookCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/BookCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/BookSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/BookSection.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/Footer.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/Footer.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/Footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/components.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/components/components.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/AddBook.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/AddBook.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/AddUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/AddUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/AdminBook.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/AdminBook.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/AdminHome.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/AdminHome.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/AdminUser.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/AdminUser.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/AdminUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/AdminUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/BookDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/BookDetail.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/BookList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/BookList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/EditBook.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/EditBook.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/EditUser.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/EditUser.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/MyBook.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/MyBook.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/MyFine.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../FrontEnd/my-frontend/src/pages/MyFine.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="3BMFVTBqqcE9Y61RTjbBwaW8CtB" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="CourseProjectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="CourseProject" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.courseproject.CourseProjectApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.29346.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c558aec-32b6-4292-ae2a-bd14b53f8bdb" name="Changes" comment="" />
+      <created>1774291058906</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774291058906</updated>
+      <workItem from="1774291060132" duration="960000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

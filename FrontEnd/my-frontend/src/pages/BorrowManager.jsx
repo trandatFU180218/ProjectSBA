@@ -13,10 +13,18 @@ function BorrowManager() {
         loadBorrowNotReturn();
     }, []);
 
+    const getAuthHeader = () => {
+        const token = localStorage.getItem("token");
+        return {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        };
+    };
+
     const loadBorrowNotReturn = async () => {
         try {
-            const res = await getBorrowNotReturn(); // giả sử API trả về tất cả, không cần userId
-            setBorrowDetail(res.data || []);
+            const res = await getBorrowNotReturn(); 
+            setBorrowDetail(res);
         } catch (err) {
             console.error("Lỗi tải sách đã mượn:", err);
         }
@@ -42,7 +50,7 @@ function BorrowManager() {
         <div className="borrow-manager">
             <h2>Quản lý sách chưa trả</h2>
 
-            <button className="back-btn" onClick={() => navigate("/Admin")}>
+            <button className="back-btn" onClick={() => navigate("/admin/home")}>
                 ← Quay lại
             </button>
 

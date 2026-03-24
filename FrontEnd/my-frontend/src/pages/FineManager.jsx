@@ -15,7 +15,7 @@ function FineManager() {
     const loadFines = async () => {
         try {
             const res = await getAllFine();
-            setFines(res.data || []);
+            setFines(res);
         } catch (err) {
             console.error("Lỗi load fines:", err);
         }
@@ -42,7 +42,7 @@ function FineManager() {
         <div className="fine-manager">
             <h2>Quản lý tiền phạt</h2>
             <div>
-                <button onClick={() => navigate("/Admin")}>← Quay lại</button>
+                <button onClick={() => navigate("/admin/home")}>← Quay lại</button>
             </div>
             <div className="search-box">
                 <input

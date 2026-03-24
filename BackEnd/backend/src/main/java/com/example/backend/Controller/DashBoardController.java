@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/dash-board")
+@RequestMapping("/admin/dash-board")
 public class DashBoardController {
     @Autowired
     private BookRepository bookRepository;

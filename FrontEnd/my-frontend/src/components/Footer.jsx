@@ -95,12 +95,14 @@ function Footer() {
       {/* BOTTOM */}
       <div className="footer-bottom">
 
-        <p>© Bản quyền thuộc về Alpha Books | Cung cấp bởi Sapo</p>
+        <p>© Bản quyền thuộc về Alpha Books | Cung cấp bởi TienDat</p>
 
         <img
-          src="https://dangkywebsite.gov.vn/wps/wcm/connect/1b24e580-1d3b-4f06-b6c1-bd1b42c8c94b/logoSaleNoti.png"
+          src="https://congtyquatang.com.vn/wp-content/uploads/2026/03/logo-bo-cong-thuong-vector-03.png"
           alt="bo-cong-thuong"
+          
         />
+        <p>Bộ Công Thương</p>
 
       </div>
 

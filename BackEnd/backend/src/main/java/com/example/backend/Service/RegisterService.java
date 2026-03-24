@@ -1,7 +1,9 @@
 package com.example.backend.Service;
 
 import com.example.backend.DTO.RegisterDTO;
+import com.example.backend.Entity.Role;
 import com.example.backend.Entity.User;
+import com.example.backend.Repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,12 @@ public class RegisterService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
     public void register(RegisterDTO reg){
+
+        Role role = roleRepository.findById(3l).orElseThrow();
 
         User user = new User();
         user.setEmail(reg.getEmail());
@@ -24,7 +31,7 @@ public class RegisterService {
         user.setName(reg.getName());
         user.setPhone(reg.getPhone());
         user.setCreatedAt(new Date());
-        user.setRole_id(1L);
+        user.setRole(role);
         user.setStatus("1");
 
         uService.save(user);

@@ -6,7 +6,7 @@ function BookSection({ title, books = [] }) {
   return (
     <div className="book-section">
 
-      <h2>{title}</h2>
+      <h2 className="book-section-title">{title}</h2>
 
       <div className="book-grid">
         {books.length > 0 ? (

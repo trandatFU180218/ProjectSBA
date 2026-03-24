@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 function MyBook() {
   const [books, setBooks] = useState([]);
-  const userId = localStorage.getItem("userId") ; 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,22 +13,13 @@ function MyBook() {
 
   const loadMyBooks = async () => {
     try {
-      const res = await getMyBooks(userId);
-      setBooks(res.data);
+      const res = await getMyBooks();
+      setBooks(res);
     } catch (err) {
       console.error("Lỗi tải sách đã mượn:", err);
     }
   };
 
-  // const handleReturn = async (borrowDetailId) => {
-  //   try {
-  //     await returnBook(borrowDetailId);
-  //     alert("Trả sách thành công!");
-  //     loadMyBooks(); 
-  //   } catch (err) {
-  //     alert("Không thể trả sách: " + (err.response?.data || "Lỗi hệ thống"));
-  //   }
-  // };
 
   return (
     <div className="mybooks-container">

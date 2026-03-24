@@ -9,33 +9,40 @@ function AdminBooks() {
     const [books, setBooks] = useState([]);
     const [search, setSearch] = useState("");
 
+    const getAuthHeader = () => {
+        const token = localStorage.getItem("token");
+        return {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        };
+    };
+
+
+
+
     useEffect(() => {
-
-        const role = localStorage.getItem("role");
-
-        if (role !== "1") {
-            navigate("/Home");
-            return;
-        }
-
         fetchBooks();
-
     }, []);
 
     const fetchBooks = () => {
 
-        fetch("http://localhost:8080/backend/admin-book")
-            .then(res => res.json())
-            .then(data => setBooks(data))
-            .catch(err => console.log(err));
+        fetch("http://localhost:8080/backend/admin/book", {
+            headers: getAuthHeader()
+        })
+            .then(res => {
+                if (res.status === 401) navigate("/");
+                return res.json();
+            })
+            .then(data => setBooks(data.content || data));
     };
 
     const deleteBook = (id) => {
 
         if (!window.confirm("Delete this book?")) return;
 
-        fetch(`http://localhost:8080/backend/admin-book/${id}`, {
-            method: "DELETE"
+        fetch(`http://localhost:8080/backend/admin/book/${id}`, {
+            method: "DELETE",
+            headers: getAuthHeader()
         })
             .then(() => fetchBooks());
     };
@@ -56,13 +63,13 @@ function AdminBooks() {
 
                     <button
                         className="add-btn"
-                        onClick={() => navigate("/AddBook")}
+                        onClick={() => navigate("/admin/AddBook")}
                     >
                         + Add Book
                     </button>
 
                     <button
-                        onClick={() => navigate("/Admin")}
+                        onClick={() => navigate("/admin/home")}
                     >
                         Back
                     </button>
@@ -119,7 +126,7 @@ function AdminBooks() {
                             <td data-label="Action">
                                 <button
                                     className="edit-btn"
-                                    onClick={() => navigate(`/EditBook/${book.id}`)}
+                                    onClick={() => navigate(`/admin/EditBook/${book.id}`)}
                                 >
                                     Edit
                                 </button>

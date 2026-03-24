@@ -10,18 +10,21 @@ function AdminHome() {
         localStorage.removeItem("role");
         navigate("/");
     }
+    const getAuthHeader = () => {
+        const token = localStorage.getItem("token");
+        return {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        };
+    };
 
     useEffect(() => {
 
-        const role = localStorage.getItem("role");
 
-        // chặn user thường
-        if (role !== "1") {
-            navigate("/Home");
-            return;
-        }
 
-        fetch("http://localhost:8080/backend/dash-board")
+        fetch("http://localhost:8080/backend/admin/dash-board",{
+            headers: getAuthHeader()
+        })
             .then(res => res.json())
             .then(data => setStats(data))
             .catch(err => console.log(err));
@@ -68,19 +71,19 @@ function AdminHome() {
 
             <div className="admin-menu">
 
-                <button onClick={() => navigate("/AdminBook")}>
+                <button onClick={() => navigate("/admin/book")}>
                     Manage Books
                 </button>
 
-                <button onClick={() => navigate("/AdminUser")}>
+                <button onClick={() => navigate("/admin/user")}>
                     Manage Users
                 </button>
 
-                <button onClick={() => navigate("/borrow-manager")}>
+                <button onClick={() => navigate("/admin/borrow-manager")}>
                     Manage Borrows
                 </button>
 
-                <button onClick={() => navigate("/fine-manager")}>
+                <button onClick={() => navigate("/admin/fine-manager")}>
                     Manage Fines
                 </button>
 
